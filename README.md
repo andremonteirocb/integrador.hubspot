@@ -16,7 +16,7 @@ using(var hubspot = new HubSpot())
 }
 ```
 
-### Recuperar produto pelo id
+### Obter produto pelo id
 ```c#
 using(var hubspot = new HubSpot())
 {
@@ -24,7 +24,7 @@ using(var hubspot = new HubSpot())
 }
 ```
 
-### Recuperar todos os produtos
+### Obter todos os produtos
 ```c#
 using(var hubspot = new HubSpot())
 {
@@ -61,7 +61,7 @@ using(var hubspot = new HubSpot())
       {
           Propriedades = new List<Propriedade> 
           {
-              new Rest.Models.Propriedade { Chave = "chave", Valor = "novp_valor" },
+              new Rest.Models.Propriedade { Chave = "chave", Valor = "novo_valor" },
               new Rest.Models.Propriedade { Chave = "recurringbillingfrequency", Valor = "per_six_months" }
           }
       }
@@ -75,5 +75,57 @@ using(var hubspot = new HubSpot())
 using(var hubspot = new HubSpot())
 {
   hubSpot.Product.DeletarProduto(productId);
+}
+```
+
+### Obter pipeline pelo id
+```c#
+using(var hubspot = new HubSpot())
+{
+  hubSpot.Pipeline.RecuperarTodosOsPipelines();
+}
+```
+
+### Obter todos os pipelines
+```c#
+using(var hubspot = new HubSpot())
+{
+  hubSpot.Pipeline.RecuperarPipelineComDealStages(pipelineId);
+}
+```
+
+### Obter requests do dia
+```c#
+using(var hubspot = new HubSpot())
+{
+  var integration = hubSpot.Integrations.RecuperarNumeroDeRequestDiarioDaApi();
+}
+```
+
+### Enviar formulário
+```c#
+using(var hubspot = new HubSpot())
+{
+  var dados = new DadosIntegracao
+  {
+      Deal = new DadosFormulario
+      {
+          PortalId = "portal_id",
+          FormId = "form_id",
+          Contexto = new ContextForm 
+          {
+            CookieHubSpot = "cookie",
+            PageUri = "page_uri",
+            IpAddress = "ip_address",
+            PageName = "page_name"
+          },
+          Propriedades = new List<Propriedade> 
+          {
+              new Rest.Models.Propriedade { Chave = "chave", Valor = "valor" }
+          }
+      }
+  };
+  //skipValidation ignorar erros caso true
+  var form = _hubSpot.Form.EnviarFormulario(dados, skipValidation);
 }
 ```
