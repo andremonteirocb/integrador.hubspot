@@ -9,6 +9,7 @@
   <add key="app:urlforms" value="https://api.hsforms.com" />
   <add key="app:url" value="https://api.hubapi.com" />
   ```
+  
 ## Engagement
 ### Criar engagement
 ```c#
@@ -17,6 +18,7 @@ using(var hubspot = new HubSpot())
     hubspot.Engagement.CriarEngagement(contactId, mensagem);
 }
 ```
+
 ## Produto
 ### Obter produto pelo id
 ```c#
@@ -79,6 +81,7 @@ using(var hubspot = new HubSpot())
   hubSpot.Product.DeletarProduto(productId);
 }
 ```
+
 ## Pipeline
 ### Obter pipeline pelo id
 ```c#
